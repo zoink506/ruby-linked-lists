@@ -4,8 +4,8 @@
 # head - retruns the first node in the list                                       <
 # tail - returns the last node in the list                                        <
 # at(index) - returns the node at the given index                                 <
-# pop - removes the last element from the list                                    >
-# contains?(value) returns true if the value is in the list, otherwise false      >
+# pop - removes the last element from the list                                    <
+# contains?(value) returns true if the value is in the list, otherwise false      <
 # find(value) - returns the index of the node containig value, nil if not found   >
 # to_s - turns the entire linked list into a string to be printed out to console  >
 # index is not assigned, but counted when asked for by a method                   >
@@ -118,6 +118,15 @@ class LinkedList
     return node
   end
 
+  def contains?(value, node = @head)
+    # returns true if the list contains a node with the value
+    # false otherwise
+    return false if @head.nil?
+    return true if node.data == value
+    return false if node.next.nil?
+    contains?(value, node.next)
+  end
+
   private
   def get_node_data(node)
     "(#{node.data}) -> "
@@ -141,15 +150,15 @@ my_list.prepend("Jimmothy")
 my_list.prepend("Jeff")
 my_list.prepend("Wong")
 #my_list.append("Jimmyboy")
-puts my_list.to_s
 #p my_list
 puts my_list.size
 #p my_list.head.data
 #p my_list.tail.data
 #p my_list.at(2)
-my_list.pop
 #my_list.pop
 #my_list.pop
 #my_list.pop
+#my_list.pop
+p my_list.contains?("Wong")
 
 puts my_list.to_s
