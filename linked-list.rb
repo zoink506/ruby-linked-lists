@@ -6,7 +6,7 @@
 # at(index) - returns the node at the given index                                 <
 # pop - removes the last element from the list                                    <
 # contains?(value) returns true if the value is in the list, otherwise false      <
-# find(value) - returns the index of the node containig value, nil if not found   >
+# find(value) - returns the index of the node containing value, nil if not found  >
 # to_s - turns the entire linked list into a string to be printed out to console  >
 # index is not assigned, but counted when asked for by a method                   >
 
@@ -127,6 +127,12 @@ class LinkedList
     contains?(value, node.next)
   end
 
+  def find(value, count = 0, node = @head)
+    return count if node.data == value
+    return nil if node.next.nil?
+    find(value, count + 1, node.next)
+  end
+
   private
   def get_node_data(node)
     "(#{node.data}) -> "
@@ -160,5 +166,6 @@ puts my_list.size
 #my_list.pop
 #my_list.pop
 p my_list.contains?("Wong")
+p my_list.find("Jack")
 
 puts my_list.to_s
