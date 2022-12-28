@@ -65,6 +65,14 @@ class LinkedList
     str = to_s(str + get_node_data(node), node.next)
   end
 
+  def size(count = 0, node = @head)
+    return 0 if @head.nil?
+
+    count += 1 if !node.nil?
+    return count if node.next.nil?
+    size(count, node.next)
+  end
+
   private
   def get_node_data(node)
     "(#{node.data}) -> "
@@ -81,12 +89,13 @@ end
 
 my_list = LinkedList.new
 #my_list.append("Ben")
-#my_list.append("Jack")
+my_list.append("Jack")
 #my_list.append("SAMMY")
-my_list.prepend("Jimmothy")
-my_list.prepend("Sherdan")
+#my_list.prepend("Jimmothy")
+#my_list.prepend("Sherdan")
 my_list.prepend("Jeff")
-my_list.prepend("Wong")
+#my_list.prepend("Wong")
 #my_list.append("Jimmyboy")
 puts my_list.to_s
 #p my_list
+puts my_list.size
