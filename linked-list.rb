@@ -1,14 +1,14 @@
-# append(value) - adds a new node containing value to end of list
-# prepend(value) - adds a new node containing value to start of list
-# size - returns total number of nodes in list
-# head - retruns the first node in the list
-# tail - returns the last node in the list
-# at(index) - returns the node at the given index
-# pop - removes the last element from the list
-# contains?(value) returns true if the value is in the list, otherwise false
-# find(value) - returns the index of the node containig value, nil if not found
-# to_s - turns the entire linked list into a string to be printed out to console
-# index is not assigned, but counted when asked for by a method
+# append(value) - adds a new node containing value to end of list                 <
+# prepend(value) - adds a new node containing value to start of list              <
+# size - returns total number of nodes in list                                    <
+# head - retruns the first node in the list                                       <
+# tail - returns the last node in the list                                        <
+# at(index) - returns the node at the given index                                 >
+# pop - removes the last element from the list                                    >
+# contains?(value) returns true if the value is in the list, otherwise false      >
+# find(value) - returns the index of the node containig value, nil if not found   >
+# to_s - turns the entire linked list into a string to be printed out to console  >
+# index is not assigned, but counted when asked for by a method                   >
 
 class LinkedList
   def initialize
@@ -81,6 +81,17 @@ class LinkedList
     @tail
   end
 
+  def at(index, count = 0, node = @head)
+    # Return the node at the given index
+    # If index cannot be found (i.e, list is empty), return :error
+    # 0 based indexing (@head index = 0)
+    return nil if @head.nil?
+    return node if count == index # base case
+    return nil if node.next.nil?
+    at(index, count + 1, node.next)
+
+  end
+
   private
   def get_node_data(node)
     "(#{node.data}) -> "
@@ -107,5 +118,6 @@ my_list.prepend("Jeff")
 puts my_list.to_s
 #p my_list
 puts my_list.size
-p my_list.head.data
-p my_list.tail.data
+#p my_list.head.data
+#p my_list.tail.data
+p my_list.at(2)
