@@ -3,7 +3,7 @@
 # size - returns total number of nodes in list                                    <
 # head - retruns the first node in the list                                       <
 # tail - returns the last node in the list                                        <
-# at(index) - returns the node at the given index                                 >
+# at(index) - returns the node at the given index                                 <
 # pop - removes the last element from the list                                    >
 # contains?(value) returns true if the value is in the list, otherwise false      >
 # find(value) - returns the index of the node containig value, nil if not found   >
@@ -89,7 +89,33 @@ class LinkedList
     return node if count == index # base case
     return nil if node.next.nil?
     at(index, count + 1, node.next)
+  end
 
+  def pop
+    # Sets node before @tail to be @tail
+    # 
+    # Loop through size - 2 times to find the node before @tail
+    size = self.size
+    if size > 1
+      node = self.at(size - 2)
+    elsif size == 1
+      node = @head
+    elsif size < 1
+      node = nil
+    end
+
+    if !node.nil?
+      if size == 1
+        @head = nil
+        @tail = nil
+      else
+        node.next = nil
+        @tail = node
+      end
+    end
+
+    puts "2nd last node: #{node.data}"
+    return node
   end
 
   private
@@ -113,11 +139,17 @@ my_list.append("Jack")
 my_list.prepend("Jimmothy")
 #my_list.prepend("Sherdan")
 my_list.prepend("Jeff")
-#my_list.prepend("Wong")
+my_list.prepend("Wong")
 #my_list.append("Jimmyboy")
 puts my_list.to_s
 #p my_list
 puts my_list.size
 #p my_list.head.data
 #p my_list.tail.data
-p my_list.at(2)
+#p my_list.at(2)
+my_list.pop
+#my_list.pop
+#my_list.pop
+#my_list.pop
+
+puts my_list.to_s
