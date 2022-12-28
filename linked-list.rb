@@ -73,6 +73,14 @@ class LinkedList
     size(count, node.next)
   end
 
+  def head
+    @head
+  end
+
+  def tail 
+    @tail
+  end
+
   private
   def get_node_data(node)
     "(#{node.data}) -> "
@@ -91,7 +99,7 @@ my_list = LinkedList.new
 #my_list.append("Ben")
 my_list.append("Jack")
 #my_list.append("SAMMY")
-#my_list.prepend("Jimmothy")
+my_list.prepend("Jimmothy")
 #my_list.prepend("Sherdan")
 my_list.prepend("Jeff")
 #my_list.prepend("Wong")
@@ -99,3 +107,5 @@ my_list.prepend("Jeff")
 puts my_list.to_s
 #p my_list
 puts my_list.size
+p my_list.head.data
+p my_list.tail.data
